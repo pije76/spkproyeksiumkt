@@ -42,7 +42,9 @@ INSTALLED_APPS = [
 	'allauth',
 	'allauth.account',
 	'allauth.socialaccount',
+	'accounts',
 
+	'homepage',
 	'proyek',
 
 	'debug_toolbar',
@@ -151,13 +153,10 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 ### All-Auth settings ###
-
-AUTH_USER_MODEL = 'accounts.MemberProfile'
+AUTH_USER_MODEL = 'accounts.UserProfile'
 # ACCOUNT_EMAIL_REQUIRED = False
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = 'homepage:index'
-#LOGIN_REDIRECT_URL = 'subscription:index'
-#LOGIN_REDIRECT_URL = 'accounts:profile_detail'
-LOGOUT_URL = 'homepage:index'
+# LOGIN_URL = '/accounts/login/'
+# LOGIN_REDIRECT_URL = 'homepage:index'
+# LOGOUT_URL = 'homepage:index'
 # LOGOUT_REDIRECT_URL = 'homepage:index'
 
