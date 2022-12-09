@@ -1,15 +1,15 @@
 {% load static %}
 {% load i18n %}
 
-<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# ">
+<html>
     <head>
         <meta charset="utf-8" />
         <noscript>
             <meta http-equiv="Refresh" content="0; URL=/big_pipe/no-js?destination=/node" />
         </noscript>
-        <link rel="canonical" href="https://www.shrinivasdiagnostics.com/" />
-        <link rel="shortlink" href="https://www.shrinivasdiagnostics.com/" />
-        <meta name="description" content="Shrinivas Diagnostics Labs offers pathology services and blood tests at affordable prices. Get yourself tested for a wide set of diseases right away." />
+        <link rel="canonical" href="https://panjianom.my.id/" />
+        <link rel="shortlink" href="https://panjianom.my.id/" />
+        <meta name="description" content="" />
         <meta name="Generator" content="Django coded by digidzine.com" />
         <meta name="MobileOptimized" content="width" />
         <meta name="HandheldFriendly" content="true" />
@@ -29,53 +29,27 @@
     <link href="{% static 'css/jquery-ui.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'css/jquery-ui-smoothness.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'css/select2.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'css/toastr.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'css/easy-autocomplete.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'css/sweetalert2.min.css' %}" rel="stylesheet" type="text/css">
 
     {% block extra_style %}
     {% endblock %}
 
     </head>
 
-    <body class="path-frontpage en pulogout">
-        <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
-            <div id="desktop-v">
-                {% include "header.html" %}
-                {% include 'messages.html' %}
-                <div class="modal fade" tabindex="-1" role="dialog" id="modal">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content"></div>
-                    </div>
-                </div>                    
-                {% block content %}
-                {% include "home.html" %}
-                {% endblock %}
+    <body>
+        {% include "header.html" %}
+        {% include 'messages.html' %}
 
-                {% include "footer.html" %}    
-            </div>
-        </div>
+        {% block content %}
+        {% include "homepage/home.html" %}
+        {% endblock %}
+
+        {% include "footer.html" %}
 
         <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
-        <script src="{% static 'js/jquery-3.6.0.min.js' %}" type="text/javascript"></script>
-        <script src="{% static 'js/jquery-migrate-3.0.0.min.js' %}" type="text/javascript"></script>
-        <script src="{% static 'js/popper.min.js' %}" type="text/javascript"></script>
         <script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
 
-        <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}" type="text/javascript"></script>
-        <script src="{% static 'js/select2.min.js' %}" type="text/javascript"></script>
-
         {% block extra_jscript %}
-
-        <script type="text/javascript">
-        $(document).ready(function()
-        {
-        });
-        </script>
         {% endblock %}
     </body>
 </html>

@@ -15,17 +15,18 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Proyek',
+            name='Data',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nama_proyek', models.CharField(blank=True, max_length=255, null=True, verbose_name='Nama Proyek')),
-                ('SPK', models.CharField(blank=True, max_length=255, null=True)),
+                ('nama_data', models.CharField(blank=True, max_length=255, null=True)),
+                ('waktu', models.DateTimeField()),
+                ('biaya', models.DecimalField(decimal_places=2, max_digits=100)),
                 ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'verbose_name': 'Proyek',
-                'verbose_name_plural': 'Proyek',
-                'ordering': ('nama_proyek',),
+                'verbose_name': 'Data',
+                'verbose_name_plural': 'Data',
+                'ordering': ('nama_data',),
             },
         ),
     ]

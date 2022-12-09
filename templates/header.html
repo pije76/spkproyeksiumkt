@@ -1,148 +1,85 @@
+{% load static %}
+{% load i18n %}
+{% load account %}
 
 <!-- main header section start -->
-<section class="main-top-header">
-	<header class="site-header">
-		<div class="container-fluid">
-			<div class="row">
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom box-shadow bg-light">
+    <h5 class="my-0 mr-md-auto font-weight-normal text-center">
+        {% if logos %}
+            {% for object in logos %}
+            <img class="logotenant" src="{{ object.logo_url }}">
+            <a href="/" class="text-title">
+                <span class="text-center">{{ titles.title }}</span>
+            </a>
+            {% endfor %}
+        {% endif %}
+    </h5>
 
-				<div class="col-lg-3 col-md-4 col-sm-12 flex logo-custom-1">
-					<div class="logo">
-						<div class="region region-logo">
-							<div class="views-element-container block block-views block-views-blockpathkind-system-block-1" id="block-views-block-pathkind-system-block-1">
-								<div>
-									<div class="view view-pathkind-system view-id-pathkind_system view-display-id-block_1">
-										<div class="view-content">
-											<div class="views-row">
-												<div class="views-field views-field-field-image">
-													<div class="field-content">
-														<a href="/" title="logo">
-															<img class="img-fluid" src="/assets/images/shrinivasdiagnostics_logo.png" alt="logo" />
-														</a>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                     <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home"></i>&nbsp;{% trans "Home" %} <span class="sr-only">(current)</span></a>
+                    </li>
 
-				<div class="col-lg-5 col-md-8 col-sm-12 search-custom-1">
-					<div class="city-search-section">
-						<div class="search-center">
-							<div class="region region-search">
-								<div id="block-webform-6" class="block block-webform block-webform-block">
-									<form action="/book-blood-test-online-in-india/autocomplete/" method="GET" class="webform-submission-form webform-submission-add-form webform-submission-header-search-form-form webform-submission-header-search-form-add-form js-webform-details-toggle webform-details-toggle" id="webform-submission-header-search-form-add-form">
-										<div class="search-city-wrapper js-form-item form-item js-form-type-webform-autocomplete form-type-webform-autocomplete js-form-item-city-name form-item-city-name form-no-label">
-											<input class="search-city-auto form-autocomplete form-text webform-autocomplete" type="text" id="edit-city-name" name="city_name" value="" size="60" maxlength="255" placeholder="Search City" readonly />
-										</div>
-										<div id="edit-markup" class="js-form-item form-item js-form-type-webform-markup form-type-webform-markup js-form-item-markup form-item-markup form-no-label">
-											<a href="#" id="header-search-submit" class="btn">Submit</a>
-										</div>
-										<input autocomplete="off" type="hidden" name="form_build_id" value="form-mLwle7aSRtQAqwQ3rA7xKjR4jxxwE8B3dZ5btVy3ZCs" />
-										<input type="hidden" name="form_id" value="webform_submission_header_search_form_add_form" />
-									</form>
-								</div>
-								<div class="search-det">
-									<form action="/book-blood-test-online-in-india/autocomplete/" method="GET">
-										<div class="easy-autocomplete" style="width: 453.891px;">
-											<input type="text" id="test_search_input_field_header" name="q" class="search-det test_search_input_field_header" placeholder="Search for a test, health package or Labs" autocomplete="off"autocapitalize="off" autocorrect="off" autofocus="autofocus" role="combobox" spellcheck="false">
-											<div class="easy-autocomplete-container" id="eac-container-test_search_input_field_header">
-												<ul style="display: none;"></ul>
-											</div>
-											<i class="fa fa-search"></i>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-table"></i>&nbsp;{% trans "Data" %}</a>
+                    </li>
 
-				<div class="col-lg-4 col-md-12 col-sm-12 text-right md-0 icon-custom-1">
-					<div class="right-infos">
-						<ul>
-							<li class="call">
-								<div class="region region-call-us">
-									<div class="views-element-container block block-views block-views-blockpathkind-system-block-2" id="block-views-block-pathkind-system-block-2">
-										<div>
-											<div class="view view-pathkind-system view-id-pathkind_system view-display-id-block_2">
-												<div class="view-content">
-													<div class="views-row">
-														<div class="views-field views-field-field-image">
-															<div class="field-content">
-																<a href="tel:7500075111" title="call us">
-																	<div class="img">
-																		<img src="/assets/images/call-us.png" class="img-fluid" alt="call us">
-																	</div>Call Us 75000 75111
-																</a>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="cart">
-								<div class="region region-cart">
-									<div class="views-element-container block block-views block-views-blockpathkind-system-block-3" id="block-views-block-pathkind-system-block-3">
-										<div>
-											<div class="view view-pathkind-system view-id-pathkind_system view-display-id-block_3 js-view-dom-id-3f2575c4738f498487813c4627bb9058cda40955ace97ca34296da0153905495">
-												<div class="view-content">
-													<div class="views-row">
-														<div class="views-field views-field-field-image">
-															<div class="field-content">
-																<a href="/shopping-cart/" title="Cart">
-																	<img class="img-fluid" src="/assets/images/cart.png" alt="cart" /> 
-																</a>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<span class="cart-badge" style="display: block;"><span>{{ user_order }}</span></span>
-							</li>
-							<li class="user">
-								<div class="region region-profile">
-									<div class="views-element-container block block-views block-views-blockpathkind-system-block-4" id="block-views-block-pathkind-system-block-4-2">
-										<div>
-											<div class="view view-pathkind-system view-id-pathkind_system view-display-id-block_4">
-												<div class="view-content">
-													<div class="views-row">
-														<div class="views-field views-field-field-image">
-															<div class="field-content">
-																{% if user.is_authenticated %}
-																	<a href="{% url 'accounts:profile_detail' item.id %}" id="login-open" class="use-ajax sf-depth-1 prf-login" title="Profile" style="pointer-events: all;">
-																		<img class="img-fluid" src="/assets/images/profile.png" alt="profile">
-																	</a>
-																{% else %}
-																	<a href="{{ login_url }}" id="login-open" class="use-ajax sf-depth-1 prf-login" title="Hi Sign in" style="pointer-events: all;">
-																		<img class="img-fluid" src="/assets/images/profile.png" alt="profile">
-																	</a>
-																{% endif %}
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-user"></i>&nbsp;{{ user.full_name }}
+                        </a>
+                    </li>
 
-			</div>
-		</div>
-	</header>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-user"></i>&nbsp;{% trans "Account" %}
+                        </a>
+                    </li>
 
-</section>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="accountMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+
+
+                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="accountMenu">
+                            <a class="dropdown-item" href="{% url 'account_logout' %}">
+                                <i class="fas fa-user-cog"></i>&nbsp;{% trans "My Account" %}
+                            </a>
+                            <a class="dropdown-item" href="{% url 'account_signup' %}">
+                                <i class="fas fa-user-plus"></i>&nbsp;{% trans "Register" %}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'account_logout' %}">
+                                <i class="fas fa-sign-out-alt"></i>&nbsp;{% trans "Logout" %}
+                            </a>
+                        </div>
+
+                        {% if user.is_authenticated %}
+
+                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="userMenu">
+                            <a class="dropdown-item" href="{% url 'account_logout' %}">
+                                <i class="fas fa-user-cog"></i>&nbsp;{% trans "My Account" %}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'account_logout' %}">
+                                <i class="fas fa-sign-out-alt"></i>&nbsp;{% trans "Logout" %}
+                            </a>
+                        </div>
+
+                        {% else %}
+
+                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="userMenu">
+                            <a class="dropdown-item" href="{% url 'account_login' %}"><i class="fas fa-sign-in-alt"></i>&nbsp;{% trans "Login" %}</a>
+                        </div>
+
+                        {% endif %}
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</div>

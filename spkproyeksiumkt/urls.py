@@ -18,10 +18,14 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+from accounts.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('homepage.urls')),
+    re_path(r'^accounts/profile/$', account_profile, name='account_profile'),
+    re_path(r'^member/$', member_index, name='user_home'),
+    re_path(r'^member/action$', member_action, name='user_action'),
 ]
 
 
