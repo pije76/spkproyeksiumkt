@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from accounts.models import *
+from user.models import *
 
 # Create your models here.
 class Proyek(models.Model):

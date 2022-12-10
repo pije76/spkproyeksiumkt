@@ -31,19 +31,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-	'django.contrib.admin',
-	'django.contrib.auth',
-	'django.contrib.contenttypes',
-	'django.contrib.sessions',
-	'django.contrib.messages',
-	'django.contrib.staticfiles',
-	'django.contrib.sites',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.sites',
 
 	'allauth',
 	'allauth.account',
-	# 'allauth.socialaccount',
-	'accounts',
 
+	'user',
 	'homepage',
 	'proyek',
 	'data',
@@ -156,7 +155,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 ### All-Auth settings ###
-AUTH_USER_MODEL = 'accounts.UserProfile'
+AUTH_USER_MODEL = 'user.UserProfile'
 # ACCOUNT_EMAIL_REQUIRED = False
 # LOGIN_URL = '/accounts/login/'
 # LOGIN_REDIRECT_URL = 'homepage:index'
