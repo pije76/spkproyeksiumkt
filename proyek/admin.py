@@ -6,7 +6,7 @@ from .models import *
 class DataProyek(admin.ModelAdmin):
     list_display = [
         'id',
-        'user',
+        # 'user',
         'nama_proyek',
         'SPK',
     ]
@@ -17,3 +17,5 @@ class DataProyek(admin.ModelAdmin):
     ]
 
 admin.site.register(Proyek, DataProyek)
+admin.site.register(Estimasi_Waktu)
+admin.site.register(PERT)

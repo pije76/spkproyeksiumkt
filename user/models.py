@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
 from .managers import UserManager
+from proyek.models import *
 
 # Create your models here.
 class UserProfile(AbstractUser):
@@ -13,6 +14,7 @@ class UserProfile(AbstractUser):
     is_active = models.BooleanField(default=False, blank=True, null=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
+    nama_proyek = models.ForeignKey(Proyek, on_delete=models.CASCADE, blank=False, null=True)
 
 
     objects = UserManager()
@@ -24,7 +26,8 @@ class UserProfile(AbstractUser):
         verbose_name_plural = _("User Profile")
 
     def __str__(self):
-        return str(self.full_name)
+        # return str(self.full_name)
+        return self.id
 
     def get_full_name(self):
       full_name = '%s %s' % (self.first_name, self.last_name)
