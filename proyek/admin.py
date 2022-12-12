@@ -3,19 +3,20 @@ from django.contrib import admin
 from .models import *
 
 # Register your models here.
-class DataProyek(admin.ModelAdmin):
+class ProyekAdmin(admin.ModelAdmin):
     list_display = [
         'id',
-        # 'user',
+        'user',
         'nama_proyek',
-        'SPK',
+        'tanggal_mulai',
+        'tanggal_selesai',
+        'spk',
     ]
     # list_filter=['available','created','updated']
     list_editable = [
         'nama_proyek',
-        'SPK',
+        'tanggal_mulai',
+        'tanggal_selesai',
+        'spk',
     ]
-
-admin.site.register(Proyek, DataProyek)
-admin.site.register(Estimasi_Waktu)
-admin.site.register(PERT)
+admin.site.register(Proyek, ProyekAdmin)

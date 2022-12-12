@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load render_table from django_tables2 %}
+
+{% block head_title %}
+{{ page_title }}
+{% endblock %}
+
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+
+{% block extra_style %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-6"></div>
+		<div class="col-4">
+			<h4>Daftar Estimasi Waktu</h4>
+		</div>
+		<div class="col-2"></div>
+	</div>
+	<div class="row">
+		<div class="col-lg-2 col-md-2 col-sm-4">
+			<div class="link-tiles">
+				<a href="{% url 'proyek:estimasi_waktu' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Estimasi Waktu</a>
+			</div>
+		</div>
+
+		<div class="col-lg-10 col-md-10 col-sm-6">
+			<table id="t_add_row" class="table table-striped table-bordered">
+				{% render_table object_list %}
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block extra_jscript %}
+{% endblock %}

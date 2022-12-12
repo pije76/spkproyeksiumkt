@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}
+{{ page_title }}
+{% endblock %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block extra_style %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-4">
+			<h2 class="home_title">Account Profile</h2>
+			<div class="left_menu">
+				<ul>
+					<li><a class="active" href="#">Profile</a></li>
+					<li><a class="" href="#">Data</a></li>
+					{# <li><a class="" href="download-report.html">Download Report</a></li> #}
+				</ul>
+			</div>
+		</div>
+
+		<div class="col-8">
+
+			{% for item in user_data %}
+			<div class="profile_box">
+				<h4>Name:</h4>
+				<p>{{ item.full_name }}</p>
+				<h4>Email:</h4>
+				<p>{{ item.email }}</p>
+				<h4>Proyek:</h4>
+				<p>{{ item.nama_proyek }}</p>
+				<a href="#" data-bs-toggle="modal" data-bs-target="#profileModal" class="btn_cart">Edit</a>
+			</div>
+			{% endfor %}
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block extra_jscript %}
+{% endblock %}

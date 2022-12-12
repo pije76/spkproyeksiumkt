@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}
+{{ page_title }}
+{% endblock %}
+
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+
+{% block extra_style %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-6"></div>
+		<div class="col-4">
+			<h4>Varians Kegiatan</h4>
+		</div>
+		<div class="col-2"></div>
+	</div>
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-2">
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:tambah_kegiatan' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Kegiatan</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:standar_deviasi_kegiatan' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Standar Deviasi Kegiatan</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:varians_kegiatan' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Varians Kegiatan</a>
+			</div>
+		</div>
+
+		<div class="col-lg-9 col-md-9 col-sm-8">
+			<table id="t_add_row" class="table table-striped table-bordered">
+				<thead class="thead_light">
+					<tr>
+						<th class="text-center">{% trans "ID" %}</th>
+						<th class="text-center">{% trans "Kode Kegiatan" %}</th>
+						<th class="text-center">{% trans "Durasi" %}</th>
+						<th class="text-center" colspan="3">{% trans "Estimasi Waktu" %}</th>
+						<th class="text-center">{% trans "Varians Kegiatan" %}</th>
+					</tr>
+					<tr>
+						<th class="text-center"></th>
+						<th class="text-center"></th>
+						<th class="text-center"></th>
+						<th class="text-center">{% trans "(a)" %}</th>
+						<th class="text-center">{% trans "(m)" %}</th>
+						<th class="text-center">{% trans "(b)" %}</th>
+						<th class="text-center">{% trans "(V(Te) = S2)" %}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in data_kegiatan %}
+					<tr>
+						<td>{{ item.id }}</td>
+						<td>{{ item.kegiatan }}</td>
+						<td>{{ item.expected_duration|floatformat:0 }}</td>
+						<td>{{ item.estimasi_waktu_a|floatformat:0 }}</td>
+						<td>{{ item.estimasi_waktu_m|floatformat:0 }}</td>
+						<td>{{ item.estimasi_waktu_b|floatformat:0 }}</td>
+						<td>{{ item.varians_kegiatan|floatformat:2 }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block extra_jscript %}
+{% endblock %}

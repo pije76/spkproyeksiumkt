@@ -18,16 +18,18 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-from user.views import *
+from accounts.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include('homepage.urls')),
     path('accounts/', include('allauth.urls')),
-    path('accounts/profile/', account_profile, name='account_profile'),
+    # path('accounts/profile/', account_profile, name='account_profile'),
+    path('accounts/profile/', include('accounts.urls')),
     path('data/', include('data.urls')),
     path('proyek/', include('proyek.urls')),
+    path('kegiatan/', include('kegiatan.urls')),
 ]
 
 

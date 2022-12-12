@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from user.models import *
+from accounts.models import *
 from proyek.models import *
 
 # Create your models here.
@@ -19,6 +19,7 @@ class Data(models.Model):
         verbose_name = 'Data'
         verbose_name_plural = 'Data'
 
-    def __str__(self):
-        return str(self.nama_data)
+    # def __str__(self):
+    #     return self.proyek
+        # return str(self.proyek)
 

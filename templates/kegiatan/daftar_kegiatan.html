@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}
+{{ page_title }}
+{% endblock %}
+
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+
+{% block extra_style %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-6"></div>
+		<div class="col-4">
+			<h4>Daftar Kegiatan</h4>
+		</div>
+		<div class="col-2"></div>
+	</div>
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-2">
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:tambah_kegiatan' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Kegiatan</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:standar_deviasi_kegiatan' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Standar Deviasi Kegiatan</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:varians_kegiatan' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Varians Kegiatan</a>
+			</div>
+		</div>
+
+		<div class="col-lg-9 col-md-9 col-sm-8">
+			<form method="post" action="">
+			{% csrf_token %}
+				<table id="t_add_row" class="table table-striped table-bordered">
+					<thead class="thead_light">
+						<tr>
+							<th class="text-center">{% trans "ID" %}</th>
+							<th class="text-center">{% trans "Proyek" %}</th>
+							<th class="text-center">{% trans "Nama Kegiatan" %}</th>
+							<th class="text-center">{% trans "Kode" %}</th>
+							<th class="text-center">{% trans "Predecessor" %}</th>
+							<th class="text-center">{% trans "Hubungan Keterkaitan" %}</th>
+							<th class="text-center">{% trans "Bobot Kegiatan" %}</th>
+							<th class="text-center">{% trans "Estimasi Biaya" %}</th>
+							<th class="text-center">{% trans "Estimasi Waktu" %}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in data_kegiatan %}
+						<tr>
+							<td>{{ item.id }}</td>
+							<td>{{ item.proyek }}</td>
+							<td>{{ item.nama_kegiatan }}</td>
+							<td>{{ item.kode }}</td>
+							<td>{{ item.predecessor }}</td>
+							<td>{{ item.hubungan_keterkaitan }}</td>
+							<td>{{ item.bobot_kegiatan }}</td>
+							<td>{{ item.estimasi_biaya }}</td>
+							<td>{{ item.estimasi_waktu }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block extra_jscript %}
+{% endblock %}

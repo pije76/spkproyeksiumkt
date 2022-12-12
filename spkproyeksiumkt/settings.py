@@ -25,8 +25,7 @@ SECRET_KEY = '8lthmo)3=d--43ujuig=42d0yyt+mh0ec_yz@60f6#2lbjwj6e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['digidzine.com', '13.228.234.201', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -42,12 +41,14 @@ INSTALLED_APPS = [
 	'allauth',
 	'allauth.account',
 
-	'user',
+	'accounts',
 	'homepage',
 	'proyek',
+	'kegiatan',
 	'data',
 
 	'debug_toolbar',
+	'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -155,10 +156,20 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 ### All-Auth settings ###
-AUTH_USER_MODEL = 'user.UserProfile'
+AUTH_USER_MODEL = 'accounts.UserProfile'
 # ACCOUNT_EMAIL_REQUIRED = False
 # LOGIN_URL = '/accounts/login/'
-# LOGIN_REDIRECT_URL = 'homepage:index'
+LOGIN_REDIRECT_URL = 'homepage:index'
 # LOGOUT_URL = 'homepage:index'
-# LOGOUT_REDIRECT_URL = 'homepage:index'
+LOGOUT_REDIRECT_URL = 'homepage:index'
 
+########################################################################
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+BOOTSTRAP4 = {
+	'include_jquery': True,
+}
+
+# DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap4.html"

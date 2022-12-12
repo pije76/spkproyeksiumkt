@@ -20,40 +20,104 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                      <li class="nav-item">
-                        <a class="nav-link" href="/"><i class="fas fa-home"></i>&nbsp;{% trans "Home" %} <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-home"></i>&nbsp;{% trans "Home" %} <span class="sr-only">(current)</span>
+                        </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/data/"><i class="fas fa-table"></i>&nbsp;{% trans "Data" %}</a>
+                        <a class="nav-link" href="/data/">
+                            <i class="fa-sharp fa-solid fa-database"></i>&nbsp;{% trans "Data" %}
+                        </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="/proyek/">
-                            <i class="fas fa-user"></i>&nbsp;{% trans "Proyek" %}
+                            <i class="fas fa-table"></i>&nbsp;{% trans "Proyek" %}
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-tasks"></i>&nbsp;{% trans "Kegiatan" %}
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="kegiatanMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+
+                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="kegiatanMenu">
+                            <a class="dropdown-item" href="{% url 'kegiatan:daftar_kegiatan' %}">
+                                <i class="fas fa-tasks"></i></i>&nbsp;{% trans "Daftar Kegiatan" %}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'kegiatan:tambah_kegiatan' %}">
+                                <i class="fas fa-tasks"></i></i>&nbsp;{% trans "Tambah Kegiatan" %}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'kegiatan:standar_deviasi_kegiatan' %}">
+                                <i class="fas fa-tasks"></i>&nbsp;{% trans "Standar Deviasi Kegiatan" %}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'kegiatan:varians_kegiatan' %}">
+                                <i class="fas fa-tasks"></i>&nbsp;{% trans "Varians Kegiatan" %}
+                            </a>
+                        </div>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa-solid fa-calendar-days"></i>&nbsp;{% trans "Waktu" %}
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="kegiatanMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+
+                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="kegiatanMenu">
+                            <a class="dropdown-item" href="{% url 'kegiatan:daftar_estimasi_waktu' %}">
+                                <i class="fa-solid fa-calendar-days"></i>&nbsp;{% trans "Daftar Estimasi Waktu" %}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'kegiatan:estimasi_waktu' %}">
+                                <i class="fa-solid fa-calendar-days"></i>&nbsp;{% trans "Estimasi Waktu" %}
+                            </a>
+                        </div>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-dollar"></i>&nbsp;{% trans "Biaya" %}
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="kegiatanMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+
+                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="kegiatanMenu">
+                            <a class="dropdown-item" href="{% url 'kegiatan:daftar_estimasi_biaya' %}">
+                                <i class="fas fa-dollar"></i>&nbsp;{% trans "Daftar Estimasi Biaya" %}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'kegiatan:estimasi_biaya' %}">
+                                <i class="fas fa-dollar"></i></i>&nbsp;{% trans "Estimasi Biaya" %}
+                            </a>
+                        </div>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-user"></i>&nbsp;{% trans "Account" %}
                         </a>
                     </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="accountMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
 
-
-                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="accountMenu">
-                            <a class="dropdown-item" href="{% url 'account_logout' %}">
-                                <i class="fas fa-user-cog"></i>&nbsp;{% trans "My Account" %}
-                            </a>
-                            <a class="dropdown-item" href="{% url 'account_signup' %}">
-                                <i class="fas fa-user-plus"></i>&nbsp;{% trans "Register" %}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'account_logout' %}">
-                                <i class="fas fa-sign-out-alt"></i>&nbsp;{% trans "Logout" %}
-                            </a>
-                        </div>
-
                         {% if user.is_authenticated %}
 
-                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="userMenu">
-                            <a class="dropdown-item" href="{% url 'account_logout' %}">
+                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="accountMenu">
+                            <a class="dropdown-item" href="{% url 'accounts:account_list' %}">
+                                <i class="fas fa-user"></i>&nbsp;{% trans "User List" %}
+                            </a>
+                            <a class="dropdown-item" href="{% url 'accounts:account_profile' request.user.id %}">
                                 <i class="fas fa-user-cog"></i>&nbsp;{% trans "My Account" %}
                             </a>
                             <div class="dropdown-divider"></div>
@@ -64,7 +128,22 @@
 
                         {% else %}
 
-                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="userMenu">
+                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="accountMenu">
+                            <a class="dropdown-item" href="{% url 'accounts:account_list' %}">
+                                <i class="fas fa-user"></i>&nbsp;{% trans "User List" %}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'account_signup' %}">
+                                <i class="fas fa-user-plus"></i>&nbsp;{% trans "Register" %}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'account_login' %}">
+                                <i class="fas fa-sign-out-alt"></i>&nbsp;{% trans "Login" %}
+                            </a>
+                        </div>
+
+
+                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="accountMenu">
                             <a class="dropdown-item" href="{% url 'account_login' %}"><i class="fas fa-sign-in-alt"></i>&nbsp;{% trans "Login" %}</a>
                         </div>
 
