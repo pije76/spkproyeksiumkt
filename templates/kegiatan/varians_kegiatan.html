@@ -62,10 +62,10 @@
 					<tr>
 						<td>{{ item.id }}</td>
 						<td>{{ item.kegiatan }}</td>
-						<td>{{ item.expected_duration|floatformat:0 }}</td>
-						<td>{{ item.estimasi_waktu_a|floatformat:0 }}</td>
-						<td>{{ item.estimasi_waktu_m|floatformat:0 }}</td>
-						<td>{{ item.estimasi_waktu_b|floatformat:0 }}</td>
+						<td>{{ item.duration|floatformat:0 }}</td>
+						<td>{{ item.tabel_estimasi_waktu_a|floatformat:0 }}</td>
+						<td>{{ item.tabel_estimasi_waktu_m|floatformat:0 }}</td>
+						<td>{{ item.tabel_estimasi_waktu_b|floatformat:0 }}</td>
 						<td>{{ item.varians_kegiatan|floatformat:2 }}</td>
 					</tr>
 					{% endfor %}

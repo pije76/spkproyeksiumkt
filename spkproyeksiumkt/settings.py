@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as messages
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -157,11 +159,43 @@ AUTHENTICATION_BACKENDS = [
 
 ### All-Auth settings ###
 AUTH_USER_MODEL = 'accounts.UserProfile'
-# ACCOUNT_EMAIL_REQUIRED = False
 # LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = 'homepage:index'
+
 # LOGOUT_URL = 'homepage:index'
 LOGOUT_REDIRECT_URL = 'homepage:index'
+ACCOUNT_SIGNUP_REDIRECT_URL = "homepage:index"
+
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'optional'   # This will force verification
+
+#######################################################################3
+
+
+CACHES = {
+	'default': {
+		"BACKEND": "django_redis.cache.RedisCache",
+		"LOCATION": "redis://127.0.0.1:6379/1",
+		"OPTIONS": {
+			"CLIENT_CLASS": "django_redis.client.DefaultClient",
+		# 	"COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
+		# 	"IGNORE_EXCEPTIONS": True,
+		}
+	},
+}
+
+CACHE_TTL = 60 * 15
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
+MESSAGE_TAGS = {
+	messages.DEBUG: 'alert-info',
+	messages.INFO: 'alert-info',
+	messages.SUCCESS: 'alert-success',
+	messages.WARNING: 'alert-warning',
+	messages.ERROR: 'alert-danger',
+}
 
 ########################################################################
 

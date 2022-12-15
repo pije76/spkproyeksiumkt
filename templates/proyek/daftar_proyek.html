@@ -39,9 +39,8 @@
 						<tr>
 							<th class="text-center">{% trans "ID" %}</th>
 							<th class="text-center">{% trans "Proyek" %}</th>
-							<th class="text-center">{% trans "Tanggal Mulai" %}</th>
-							<th class="text-center">{% trans "Tanggal Selesai" %}</th>
 							<th class="text-center">{% trans "SPK" %}</th>
+							<th class="text-center">{% trans "RAB" %}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -49,9 +48,8 @@
 						<tr>
 							<td>{{ item.id }}</td>
 							<td>{{ item.nama_proyek }}</td>
-							<td>{{ item.tanggal_mulai }}</td>
-							<td>{{ item.tanggal_selesai }}</td>
 							<td>{{ item.spk }}</td>
+							<td>{{ item.rab }}</td>
 						</tr>
 						{% endfor %}
 					</tbody>

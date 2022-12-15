@@ -38,50 +38,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{% url 'kegiatan:tabel_kegiatan' %}">
                             <i class="fas fa-tasks"></i>&nbsp;{% trans "Kegiatan" %}
                         </a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="kegiatanMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-
-                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="kegiatanMenu">
-                            <a class="dropdown-item" href="{% url 'kegiatan:daftar_kegiatan' %}">
-                                <i class="fas fa-tasks"></i></i>&nbsp;{% trans "Daftar Kegiatan" %}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'kegiatan:tambah_kegiatan' %}">
-                                <i class="fas fa-tasks"></i></i>&nbsp;{% trans "Tambah Kegiatan" %}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'kegiatan:standar_deviasi_kegiatan' %}">
-                                <i class="fas fa-tasks"></i>&nbsp;{% trans "Standar Deviasi Kegiatan" %}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'kegiatan:varians_kegiatan' %}">
-                                <i class="fas fa-tasks"></i>&nbsp;{% trans "Varians Kegiatan" %}
-                            </a>
-                        </div>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa-solid fa-calendar-days"></i>&nbsp;{% trans "Waktu" %}
-                        </a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="kegiatanMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-
-                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="kegiatanMenu">
-                            <a class="dropdown-item" href="{% url 'kegiatan:daftar_estimasi_waktu' %}">
-                                <i class="fa-solid fa-calendar-days"></i>&nbsp;{% trans "Daftar Estimasi Waktu" %}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'kegiatan:estimasi_waktu' %}">
-                                <i class="fa-solid fa-calendar-days"></i>&nbsp;{% trans "Estimasi Waktu" %}
-                            </a>
-                        </div>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">
@@ -129,10 +90,6 @@
                         {% else %}
 
                         <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="accountMenu">
-                            <a class="dropdown-item" href="{% url 'accounts:account_list' %}">
-                                <i class="fas fa-user"></i>&nbsp;{% trans "User List" %}
-                            </a>
-                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'account_signup' %}">
                                 <i class="fas fa-user-plus"></i>&nbsp;{% trans "Register" %}
                             </a>

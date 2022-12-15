@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-4"></div>
         <div class="col-6">
-            <h4>Estimasi Waktu</h4>
+            <h4>Tambah PERT</h4>
         </div>
         <div class="col-2"></div>
     </div>
@@ -50,4 +50,74 @@
 
 
 {% block extra_jscript %}
+<script type="text/javascript">
+$(document).ready(function()
+{
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+
+    function csrfSafeMethod(method)
+    {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    $.ajaxSetup(
+    {
+        beforeSend: function(xhr, settings)
+        {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain)
+            {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        },
+    });
+
+    $('#id_tabel_estimasi_waktu_a').change(function()
+    {
+        var tabel_estimasi_waktu_a = $(this).val();
+
+        console.log("tabel_estimasi_waktu_a", tabel_estimasi_waktu_a);
+
+        $.ajax(
+        {
+            url: '',
+            method: 'POST',
+            data: {
+                tabel_estimasi_waktu_a,
+            },
+            success: function(data)
+            {
+                console.log(id_tabel_estimasi_waktu_a);
+            }
+        })
+    })
+
+
+    $('select#id_kegiatan').change(function()
+    {
+        // var get_select = $(this).find(":selected").text();
+        var get_select = $(this).find(":selected").val();
+
+        // console.log("get_select", get_select);
+
+        if ($(this).find('option:selected'))
+        {
+            $.ajax(
+            {
+                // url: '',
+                url: '/kegiatan/estimasi-waktu/?get_select=' + get_select,
+                method: 'GET',
+                data: {
+                    get_select,
+                },
+                success: function(data)
+                {
+                    console.log(get_select);
+                    // $("#id_nama_kegiatan").val(get_select);
+                }
+            })
+        }
+    })
+});
+</script>
 {% endblock %}
+

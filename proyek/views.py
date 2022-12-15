@@ -39,9 +39,10 @@ def tambah_proyek(request):
             # proyek = form.save(commit=False)
             proyek.user = data_user
             proyek.nama_proyek = form.cleaned_data['nama_proyek']
-            proyek.tanggal_mulai = form.cleaned_data['tanggal_mulai']
-            proyek.tanggal_selesai = form.cleaned_data['tanggal_selesai']
+            # proyek.tanggal_mulai = form.cleaned_data['tanggal_mulai']
+            # proyek.tanggal_selesai = form.cleaned_data['tanggal_selesai']
             proyek.spk = form.cleaned_data['spk']
+            proyek.rab = form.cleaned_data['rab']
             proyek.save()
 
             messages.success(request, _('Your Proyek has been save successfully.'))

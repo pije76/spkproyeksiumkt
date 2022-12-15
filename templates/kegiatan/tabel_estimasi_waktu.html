@@ -20,14 +20,26 @@
 	<div class="row">
 		<div class="col-6"></div>
 		<div class="col-4">
-			<h4>Daftar Estimasi Waktu</h4>
+			<h4>Tabel Estimasi PERT</h4>
 		</div>
 		<div class="col-2"></div>
 	</div>
 	<div class="row">
-		<div class="col-lg-2 col-md-2 col-sm-4">
+		<div class="col-lg-2 col-md-2 col-sm-2">
 			<div class="link-tiles">
-				<a href="{% url 'kegiatan:estimasi_waktu' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Estimasi Waktu</a>
+				<a href="{% url 'kegiatan:tabel_kegiatan' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Tabel Kegiatan</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:tambah_kegiatan' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Kegiatan</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:tabel_estimasi_waktu' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Tabel Estimasi PERT</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:estimasi_waktu' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Tambah PERT</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:tabel_cpm' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Tabel CPM</a>
 			</div>
 		</div>
 
@@ -40,8 +52,8 @@
 						<th class="text-center">{% trans "Optimistic Time" %}</th>
 						<th class="text-center">{% trans "Most Likely Time" %}</th>
 						<th class="text-center">{% trans "Pessismistic Time" %}</th>
-						<th class="text-center">{% trans "Expected Duration" %}</th>
-						<th class="text-center">{% trans "Expected Duration (Round)" %}</th>
+						<th class="text-center">{% trans "Duration" %}</th>
+						<th class="text-center">{% trans "Duration (Round)" %}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,8 +64,8 @@
 						<td>{{ item.estimasi_waktu_a|floatformat:0 }}</td>
 						<td>{{ item.estimasi_waktu_m|floatformat:0 }}</td>
 						<td>{{ item.estimasi_waktu_b|floatformat:0 }}</td>
-						<td>{{ item.expected_duration|floatformat:2 }}</td>
-						<td>{{ item.expected_duration|floatformat:0 }}</td>
+						<td>{{ item.get_durasi|floatformat:2 }}</td>
+						<td>{{ item.get_durasi|floatformat:0 }}</td>
 					</tr>
 					{% endfor %}
 				</tbody>
