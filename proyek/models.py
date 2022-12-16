@@ -18,8 +18,6 @@ ALPHABETS_CHOICES = (
 class Proyek(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, blank=False, null=True)
     nama_proyek = models.CharField(_("Nama Proyek"), max_length=255, blank=True, null=True)
-    # tanggal_mulai = models.DateField(_("Tanggal Mulai"), blank=True, null=True)
-    # tanggal_selesai = models.DateField(_("Tanggal Mulai"), blank=True, null=True)
     spk = models.CharField(max_length=255, blank=True, null=True)
     rab = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
 
@@ -29,15 +27,5 @@ class Proyek(models.Model):
         verbose_name_plural = 'Proyek'
 
     def __str__(self):
-    #     return str(self.id)
         return self.nama_proyek
-
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:
-    #         self.expired = self.created + datetime.timedelta(days=30)
-    #         super().save(*args, **kwargs)
-
-    @property
-    def total_hari(self):
-        return (self.tanggal_selesai - self.tanggal_mulai).days
 

@@ -3,11 +3,10 @@ from django.contrib import admin
 from .models import *
 
 # Register your models here.
-
 class KegiatanAdmin(admin.ModelAdmin):
     list_display = [
         'id',
-        'proyek',
+        # 'proyek',
         'nama_kegiatan',
         'kode',
         'predecessor',
@@ -15,14 +14,6 @@ class KegiatanAdmin(admin.ModelAdmin):
         'bobot_kegiatan',
         'biaya_kegiatan',
         'duration',
-        'standar_deviasi',
-        'varians_kegiatan',
-        'earliest_start',
-        'earliest_finish',
-        'latest_start',
-        'latest_finish',
-        'slack_time',
-        'critical',
    ]
 
     # list_filter=['available','created','updated']
@@ -34,30 +25,59 @@ class KegiatanAdmin(admin.ModelAdmin):
         'bobot_kegiatan',
         'biaya_kegiatan',
         'duration',
+    ]
+
+class PERTAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'kegiatan',
+        'optimistic_time',
+        'most_likely_time',
+        'pessimistic_time',
+        'duration',
         'standar_deviasi',
         'varians_kegiatan',
+    ]
+    # list_filter=['available','created','updated']
+    list_editable = [
+        'kegiatan',
+        'optimistic_time',
+        'most_likely_time',
+        'pessimistic_time',
+        'duration',
+        'standar_deviasi',
+        'varians_kegiatan',
+    ]
+
+class CPMAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'kegiatan',
+        'kode',
+        'duration',
+        'predecessor',
+        # 'hubungan_keterkaitan',
         'earliest_start',
         'earliest_finish',
         'latest_start',
         'latest_finish',
         'slack_time',
         'critical',
-    ]
+   ]
 
-class Estimasi_WaktuAdmin(admin.ModelAdmin):
-    list_display = [
-        'id',
-        'kegiatan',
-        'estimasi_waktu_a',
-        'estimasi_waktu_m',
-        'estimasi_waktu_b',
-    ]
     # list_filter=['available','created','updated']
     list_editable = [
         'kegiatan',
-        'estimasi_waktu_a',
-        'estimasi_waktu_m',
-        'estimasi_waktu_b',
+        'kode',
+        'duration',
+        'predecessor',
+        # 'hubungan_keterkaitan',
+        'earliest_start',
+        'earliest_finish',
+        'latest_start',
+        'latest_finish',
+        'slack_time',
+        'critical',
     ]
 
 class Estimasi_BiayaAdmin(admin.ModelAdmin):
@@ -75,6 +95,7 @@ class Estimasi_BiayaAdmin(admin.ModelAdmin):
     ]
 
 admin.site.register(Kegiatan, KegiatanAdmin)
-admin.site.register(Estimasi_Waktu, Estimasi_WaktuAdmin)
+admin.site.register(CPM, CPMAdmin)
+admin.site.register(PERT, PERTAdmin)
 admin.site.register(Estimasi_Biaya, Estimasi_BiayaAdmin)
 

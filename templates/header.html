@@ -26,14 +26,14 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/data/">
-                            <i class="fa-sharp fa-solid fa-database"></i>&nbsp;{% trans "Data" %}
+                        <a class="nav-link" href="/proyek/">
+                            <i class="fas fa-table"></i>&nbsp;{% trans "Proyek" %}
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/proyek/">
-                            <i class="fas fa-table"></i>&nbsp;{% trans "Proyek" %}
+                        <a class="nav-link" href="/data/">
+                            <i class="fa-sharp fa-solid fa-database"></i>&nbsp;{% trans "Data" %}
                         </a>
                     </li>
 
@@ -42,26 +42,6 @@
                             <i class="fas fa-tasks"></i>&nbsp;{% trans "Kegiatan" %}
                         </a>
                     </li>
-
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-dollar"></i>&nbsp;{% trans "Biaya" %}
-                        </a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="kegiatanMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-
-                        <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="kegiatanMenu">
-                            <a class="dropdown-item" href="{% url 'kegiatan:daftar_estimasi_biaya' %}">
-                                <i class="fas fa-dollar"></i>&nbsp;{% trans "Daftar Estimasi Biaya" %}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'kegiatan:estimasi_biaya' %}">
-                                <i class="fas fa-dollar"></i></i>&nbsp;{% trans "Estimasi Biaya" %}
-                            </a>
-                        </div>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">

@@ -5,7 +5,7 @@ from .views import *
 app_name='data'
 
 urlpatterns = [
-    path('', daftar_data, name="daftar_data"),
+    path('', tabel_data, name="tabel_data"),
     path('tambah-data/', tambah_data, name="tambah_data"),
-    path('analisa-data/', analisa_data, name="analisa_data"),
+    path('tambah-data-kegiatan/', tambah_data_kegiatan, name="tambah_data_kegiatan"),
 ]

@@ -295,7 +295,7 @@ body {
     font-size: 12px;
 }
 
-.add_cart{
+.add_menu{
     background: #00a996;
     color: #fff;
     display: table;
@@ -309,7 +309,7 @@ body {
     box-shadow: 0 5px 9px 0 rgb(0 0 0 / 16%);
     transition: 0.3s;
 }
-.add_cart:hover{
+.add_menu:hover{
     background: #2a2a2a;
     color: #fff;
     transition: 0.3s;
@@ -463,7 +463,7 @@ body {
 
 /* footer  */
 footer{
-    padding-top: 80px;
+    padding-top: 30px;
     padding-bottom: 20px;
     background: #fff;
 }
@@ -473,8 +473,8 @@ footer p{
     color: #455880;
 }
 footer .logo{
-    margin-bottom: 30px;
-    height: 50px;
+    margin-bottom: 20px;
+    height: 40px;
 }
 .footer_title{
     font-weight: 500;
@@ -730,7 +730,7 @@ ul {
 .search_listing .best_seller{
  top: -12px !important;
 }
-.search_listing .add_cart {
+.search_listing .add_menu {
     top: 108px;
 }
 .search_listing .testes_tag{

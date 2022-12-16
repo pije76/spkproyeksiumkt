@@ -8,10 +8,8 @@ class Proyek_Form(forms.Form):
 
     user = forms.CharField(required=False, label="User:", widget=forms.HiddenInput(attrs={'class': "form-control"}))
     nama_proyek = forms.CharField(required=False, label="Proyek:", widget=forms.TextInput(attrs={'class': "form-control"}))
-    # tanggal_mulai = forms.DateField(required=False, label="Tanggal Mulai:", widget=forms.DateInput(format=('%d-%m-%Y'), attrs={'type': 'date', 'class': "form-control"}))
-    # tanggal_selesai = forms.DateField(required=False, label="Tanggal Selesai:", widget=forms.DateInput(format=('%d-%m-%Y'),attrs={'type': 'date', 'class': "form-control"}))
     spk = forms.CharField(required=False, label="SPK:", widget=forms.TextInput(attrs={'class': "form-control"}))
-    rab = forms.CharField(required=False, label="RAB:", widget=forms.TextInput(attrs={'class': "form-control"}))
+    rab = forms.FloatField(required=False, label="RAB:", max_value=1000000000, min_value=0, widget=forms.NumberInput(attrs={'class': 'form-control', 'step': "1.00"}))
 
 
 class Proyek_ModelForm(forms.ModelForm):
@@ -19,11 +17,9 @@ class Proyek_ModelForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
     user = forms.CharField(required=False, label="User:", widget=forms.TextInput(attrs={'class': "form-control"}))
-    # user = forms.ChoiceField(label='User', widget=forms.Select, choices="")
     nama_proyek = forms.CharField(required=False, label="Proyek:", widget=forms.TextInput(attrs={'class': "form-control"}))
-    # tanggal_mulai = forms.DateField(required=False, label="Tanggal Mulai:", widget=forms.DateInput(format=('%d-%m-%Y'), attrs={'type': 'date', 'class': "form-control"}))
-    # tanggal_selesai = forms.DateField(required=False, label="Tanggal Selesai:", widget=forms.DateInput(format=('%d-%m-%Y'),attrs={'type': 'date', 'class': "form-control"}))
     spk = forms.CharField(required=False, label="SPK:", widget=forms.TextInput(attrs={'class': "form-control"}))
+    rab = forms.FloatField(required=False, label="Biaya Kegiatan:", max_value=1000000000, min_value=0, widget=forms.NumberInput(attrs={'class': 'form-control', 'step': "1.00"}))
 
     class Meta:
         model = Proyek

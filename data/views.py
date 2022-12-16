@@ -10,7 +10,7 @@ from .forms import *
 from accounts.models import *
 from proyek.models import *
 
-def daftar_data(request):
+def tabel_data(request):
     page_title = _('Data')
     data_proyek = Data.objects.filter()
 
@@ -18,7 +18,7 @@ def daftar_data(request):
         'page_title': page_title,
         'data_proyek': data_proyek,
     }
-    return render(request,'data/daftar_data.html', context)
+    return render(request,'data/tabel_data.html', context)
 
 def tambah_data(request):
     page_title = _('Tambah Data')
@@ -38,7 +38,7 @@ def tambah_data(request):
             profile.waktu = form.cleaned_data['waktu']
             profile.save()
 
-            messages.success(request, _('Your profile has been change successfully.'))
+            messages.success(request, _('Your Data has been change successfully.'))
             return HttpResponseRedirect('/')
         else:
             messages.warning(request, form.errors)
@@ -54,11 +54,35 @@ def tambah_data(request):
 
     return render(request,'data/tambah_data.html', context)
 
+def tambah_data_kegiatan(request):
+    page_title = _('Tambah Data Kegiatan')
+    data_user =   UserProfile.objects.all()
+    data_proyek = Proyek.objects.filter()
+    # data_proyek = get_object_or_404(Proyek, slug=category_slug)
+    data_kegiatan = Kegiatan.objects.filter()
 
-def analisa_data(request):
-    page_title = _('Data')
+    if request.method == 'POST':
+        form = Kegiatan_Form(request.POST or None)
+
+        if form.is_valid():
+            # profile = Data()
+            profile = form.save(commit=False)
+            profile.user = form.cleaned_data['user']
+            profile.proyek = form.cleaned_data['proyek']
+            profile.waktu = form.cleaned_data['waktu']
+            profile.save()
+
+            messages.success(request, _('Your Data has been change successfully.'))
+            return HttpResponseRedirect('/')
+        else:
+            messages.warning(request, form.errors)
+
+    else:
+        form = Kegiatan_Form()
 
     context = {
         'page_title': page_title,
+        'form': form,
     }
-    return render(request,'data/data_list.html', context)
+
+    return render(request,'data/tambah_data_kegiatan.html', context)

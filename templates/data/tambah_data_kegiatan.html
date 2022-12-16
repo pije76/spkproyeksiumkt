@@ -33,15 +33,11 @@
             <div class="col-8">
                 <form action="" method="POST" id="add_billing_address_form" class="add_billing_address_form">
                 {% csrf_token %}
-                    {{ form.user|as_crispy_field }}
+                    <div class="mb-3">
+                        {{ form.user|as_crispy_field }}
+                    </div>
                     <div class="mb-3">
                         {{ form.proyek|as_crispy_field }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form.waktu|as_crispy_field }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form.biaya|as_crispy_field }}
                     </div>
                     <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
                 </form>

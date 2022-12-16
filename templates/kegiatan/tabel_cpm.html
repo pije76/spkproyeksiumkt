@@ -27,24 +27,18 @@
 	<div class="row">
 		<div class="col-lg-2 col-md-2 col-sm-2">
 			<div class="link-tiles">
-				<a href="{% url 'kegiatan:tabel_kegiatan' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Tabel Kegiatan</a>
+				<a href="{% url 'kegiatan:tabel_kegiatan' %}" class="add_menu"><i class="fa fa-check" aria-hidden="true"></i> Tabel Kegiatan</a>
 			</div>
 			<div class="link-tiles">
-				<a href="{% url 'kegiatan:tambah_kegiatan' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Kegiatan</a>
+				<a href="{% url 'kegiatan:tabel_pert' %}" class="add_menu"><i class="fa fa-check" aria-hidden="true"></i> Tabel PERT</a>
 			</div>
 			<div class="link-tiles">
-				<a href="{% url 'kegiatan:tabel_estimasi_waktu' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Tabel Estimasi PERT</a>
-			</div>
-			<div class="link-tiles">
-				<a href="{% url 'kegiatan:estimasi_waktu' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Tambah PERT</a>
-			</div>
-			<div class="link-tiles">
-				<a href="{% url 'kegiatan:tabel_cpm' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Tabel CPM</a>
+				<a href="{% url 'kegiatan:tabel_schedule' %}" class="add_menu"><i class="fa fa-check" aria-hidden="true"></i> Tabel Schedule</a>
 			</div>
 		</div>
 
 		<div class="col-lg-10 col-md-10 col-sm-8">
-			<form method="post" action="">
+			<form method="POST" action="">
 			{% csrf_token %}
 				<table id="t_add_row" class="table table-striped table-bordered">
 					<thead class="thead_light">
@@ -58,14 +52,13 @@
 							<th class="text-center">{% trans "EF" %}</th>
 							<th class="text-center">{% trans "LS" %}</th>
 							<th class="text-center">{% trans "LF" %}</th>
-							<th class="text-center">{% trans "Slack" %}</th>
 							<th class="text-center">{% trans "Lintasan" %}</th>
 					</thead>
 					<tbody>
 						{% for item in data_kegiatan %}
 						<tr>
 							<td>{{ item.id }}</td>
-							<td>{{ item.nama_kegiatan|default_if_none:"" }}</td>
+							<td>{{ item.kegiatan|default_if_none:"" }}</td>
 							<td>{{ item.kode|default_if_none:"" }}</td>
 							<td>{{ item.predecessor|default_if_none:"" }}</td>
 							<td>{{ item.duration|floatformat:2|default_if_none:"" }}</td>
@@ -73,18 +66,24 @@
 							<td>{{ item.earliest_finish|floatformat:2|default_if_none:"" }}</td>
 							<td>{{ item.latest_start|floatformat:2|default_if_none:"" }}</td>
 							<td>{{ item.latest_finish|floatformat:2|default_if_none:"" }}</td>
-							<td>{{ item.slack_time|floatformat:2|default_if_none:"" }}</td>
 							<td>{{ item.critical|default_if_none:"" }}</td>
 						</tr>
 						{% endfor %}
 					</tbody>
 				</table>
 			</form>
-
-			<a href="{% url 'kegiatan:create_forwardsCPM' %}"><button type="submit" class="btn btn-primary">Create Forwards CPM</button></a>
-			<a href="{% url 'kegiatan:create_backwardsCPM' %}"><button type="submit" class="btn btn-primary">Create Backwards CPM</button></a>
+			<div class="btn-group">
+				<a href="{% url 'kegiatan:tambah_cpm' %}"><button type="submit" class="btn btn-primary">Tambah CPM</button></a>
+			</div>
+			<div class="btn-group">
+				<a href="{% url 'kegiatan:export_excel' %}"><button type="submit" class="btn btn-primary">Simpan CPM</button></a>
+			</div>
+			<div class="btn-group">
+				<a href="{% url 'kegiatan:create_cpm' %}"><button type="submit" class="btn btn-primary">Buat CPM</button></a>
+			</div>
 		</div>
 	</div>
+	<div class="row"><br /></div>
 </div>
 
 {% endblock %}

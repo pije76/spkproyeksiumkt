@@ -43,11 +43,12 @@
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet" type="text/css" />
 
     {% block extra_style %}
+
     {% endblock %}
 
     </head>
 
-    <body>
+    <body class="d-flex flex-column h-100">
         {% include "header.html" %}
         {% include 'messages.html' %}
 

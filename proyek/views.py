@@ -36,11 +36,8 @@ def tambah_proyek(request):
 
         if form.is_valid():
             proyek = Proyek()
-            # proyek = form.save(commit=False)
             proyek.user = data_user
             proyek.nama_proyek = form.cleaned_data['nama_proyek']
-            # proyek.tanggal_mulai = form.cleaned_data['tanggal_mulai']
-            # proyek.tanggal_selesai = form.cleaned_data['tanggal_selesai']
             proyek.spk = form.cleaned_data['spk']
             proyek.rab = form.cleaned_data['rab']
             proyek.save()
@@ -52,7 +49,6 @@ def tambah_proyek(request):
 
     else:
         form = Proyek_Form(initial=initial_value)
-        # form = Proyek_ModelForm(instance=request.user, initial=initial_value)
 
     context = {
         'page_title': page_title,

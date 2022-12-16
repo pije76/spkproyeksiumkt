@@ -29,7 +29,7 @@
             <div class="col-2">
             </div>
             <div class="col-8">
-                <form action="" method="POST" id="add_billing_address_form" class="add_billing_address_form">
+                <form action="" method="POST" name="get_select" id="get_select" class="get_select">
                 {% csrf_token %}
                     <div class="mb-3">
                         {{ form | crispy }}
@@ -71,22 +71,22 @@ $(document).ready(function()
         },
     });
 
-    $('#id_tabel_estimasi_waktu_a').change(function()
+    $('#id_tabel_pert_a').change(function()
     {
-        var tabel_estimasi_waktu_a = $(this).val();
+        var tabel_pert_a = $(this).val();
 
-        console.log("tabel_estimasi_waktu_a", tabel_estimasi_waktu_a);
+        console.log("tabel_pert_a", tabel_pert_a);
 
         $.ajax(
         {
             url: '',
             method: 'POST',
             data: {
-                tabel_estimasi_waktu_a,
+                tabel_pert_a,
             },
             success: function(data)
             {
-                console.log(id_tabel_estimasi_waktu_a);
+                console.log(id_tabel_pert_a);
             }
         })
     })
@@ -103,13 +103,13 @@ $(document).ready(function()
         {
             $.ajax(
             {
-                // url: '',
-                url: '/kegiatan/estimasi-waktu/?get_select=' + get_select,
-                method: 'GET',
+                url: '',
+                // url: '/kegiatan/tambah-pert/',
+                method: 'POST',
                 data: {
                     get_select,
                 },
-                success: function(data)
+                success: function()
                 {
                     console.log(get_select);
                     // $("#id_nama_kegiatan").val(get_select);

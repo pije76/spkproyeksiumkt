@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}
+{{ page_title }}
+{% endblock %}
+
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+
+{% block extra_style %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-6"></div>
+		<div class="col-4">
+			<h4>Tabel Schedule</h4>
+		</div>
+		<div class="col-2"></div>
+	</div>
+	<div class="row">
+		<div class="col-lg-2 col-md-2 col-sm-2">
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:tabel_kegiatan' %}" class="add_menu"><i class="fa fa-check" aria-hidden="true"></i> Tabel Kegiatan</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:tabel_pert' %}" class="add_menu"><i class="fa fa-check" aria-hidden="true"></i> Tabel PERT</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:tabel_cpm' %}" class="add_menu"><i class="fa fa-check" aria-hidden="true"></i> Tabel CPM</a>
+			</div>
+		</div>
+
+		<div class="col-lg-10 col-md-10 col-sm-8">
+			<form method="post" action="">
+			{% csrf_token %}
+				<table id="t_add_row" class="table table-striped table-bordered">
+					<thead class="thead_light">
+						<tr>
+							<th class="text-center">{% trans "ID" %}</th>
+							<th class="text-center">{% trans "Nama Kegiatan" %}</th>
+							<th class="text-center">{% trans "Minggu" %}</th>
+							<th class="text-center">{% trans "Progress Rencana" %}</th>
+							<th class="text-center">{% trans "Progress Aktual" %}</th>
+					</thead>
+					<tbody>
+						{% for item in schedule_data %}
+						<tr>
+							<td>{{ item.id }}</td>
+							<td>{{ item.kegiatan|default_if_none:"" }}</td>
+							<td>{{ item.minggu|default_if_none:"" }}</td>
+							<td>{{ item.progress_rencana|floatformat:2|default_if_none:"" }}</td>
+							<td>{{ item.progress_aktual|floatformat:2|default_if_none:"" }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</form>
+			<div class="btn-group">
+				<a href="{% url 'kegiatan:tambah_schedule' %}"><button type="submit" class="btn btn-primary">Tambah Schedule</button></a>
+			</div>
+		</div>
+	</div>
+	<div class="row"><br /></div>
+</div>
+
+{% endblock %}
+
+
+{% block extra_jscript %}
+{% endblock %}

@@ -19,14 +19,26 @@
 	<div class="row">
 		<div class="col-6"></div>
 		<div class="col-4">
-			<h4>Data Overview</h4>
+			<h4>Tabel Data</h4>
 		</div>
 		<div class="col-2"></div>
 	</div>
 	<div class="row">
 		<div class="col-md-3 col-sm-4">
 			<div class="link-tiles">
-				<a href="{% url 'data:tambah_data' %}" class="add_cart"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data</a>
+				<a href="{% url 'data:tambah_data' %}" class="add_menu"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data/User</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:tambah_kegiatan' %}" class="add_menu"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Kegiatan</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:tambah_pert' %}" class="add_menu"><i class="fa fa-plus" aria-hidden="true"></i> Tambah PERT</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:tambah_cpm' %}" class="add_menu"><i class="fa fa-plus" aria-hidden="true"></i> Tambah CPM</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:tambah_schedule' %}" class="add_menu"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Schedule</a>
 			</div>
 		</div>
 
@@ -38,6 +50,7 @@
 						<tr>
 							<th class="text-center">{% trans "ID" %}</th>
 							<th class="text-center">{% trans "User" %}</th>
+							<th class="text-center">{% trans "Posisi" %}</th>
 							<th class="text-center">{% trans "Proyek" %}</th>
 						</tr>
 					</thead>
@@ -46,6 +59,7 @@
 						<tr>
 							<td>{{ item.id }}</td>
 							<td>{{ item.user }}</td>
+							<td>{{ item.proyek }}</td>
 							<td>{{ item.proyek }}</td>
 						</tr>
 						{% endfor %}

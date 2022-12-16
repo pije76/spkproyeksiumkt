@@ -8,16 +8,12 @@ class ProyekAdmin(admin.ModelAdmin):
         'id',
         'user',
         'nama_proyek',
-        # 'tanggal_mulai',
-        # 'tanggal_selesai',
         'spk',
         'rab',
     ]
     # list_filter=['available','created','updated']
     list_editable = [
         'nama_proyek',
-        # 'tanggal_mulai',
-        # 'tanggal_selesai',
         'spk',
         'rab',
     ]
