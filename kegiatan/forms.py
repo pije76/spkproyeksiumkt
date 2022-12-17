@@ -101,7 +101,7 @@ class Schedule_ModelForm(forms.ModelForm):
 
 
 	class Meta:
-		model = Estimasi_Biaya
+		model = Schedule
 		# fields = '__all__'
 		fields = (
 			# 'kegiatan',
@@ -126,7 +126,7 @@ class EstimasiBiaya_ModelForm(forms.ModelForm):
 	# biaya = forms.CharField(required=False, label="Biaya:", widget=forms.TextInput(attrs={'class': "form-control"}))
 
 	class Meta:
-		model = Estimasi_Biaya
+		model = Schedule
 		fields = '__all__'
 		# fields = (
 			# 'kegiatan',

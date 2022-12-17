@@ -79,7 +79,7 @@ class CPM(models.Model):
 		# return f"{self.kode} - {self.nama_kegiatan}"
 
 
-class Estimasi_Biaya(models.Model):
+class Schedule(models.Model):
 	minggu = models.IntegerField(_("Minggu"), blank=True, null=True)
 	progress_rencana = models.FloatField(_("Progress Rencana"), blank=True, null=True)
 	progress_aktual = models.FloatField(_("Progress Aktual"), blank=True, null=True)
@@ -91,8 +91,8 @@ class Estimasi_Biaya(models.Model):
 
 	class Meta:
 		ordering = ('id',)
-		verbose_name = 'Estimasi Biaya'
-		verbose_name_plural = 'Estimasi Biaya'
+		verbose_name = 'Schedule'
+		verbose_name_plural = 'Schedule'
 
 	# def __str__(self):
 	#     return str(self.id)

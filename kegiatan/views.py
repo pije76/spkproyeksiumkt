@@ -307,9 +307,9 @@ def create_cpm(request):
 
 ################################ SCHEDULE & BIAYA ##########################################
 def tabel_estimasi_biaya(request):
-	page_title = _('Daftar Estimasi Biaya')
+	page_title = _('Daftar Schedule')
 	data_user =   UserProfile.objects.all()
-	estimasi_biaya = Estimasi_Biaya.objects.filter()
+	estimasi_biaya = Schedule.objects.filter()
 	# total_estimasi_waktu = PERT.objects.aggregate(Sum('duration'))
 
 
@@ -346,10 +346,10 @@ def tabel_estimasi_biaya(request):
 
 #@login_required()
 def estimasi_biaya(request):
-	page_title = _('Estimasi Biaya')
+	page_title = _('Schedule')
 	user_id = request.user.is_authenticated
 	data_user =   UserProfile.objects.filter(id=user_id)
-	data_biaya = Estimasi_Biaya.objects.filter()
+	data_biaya = Schedule.objects.filter()
 
 	if request.method == 'POST':
 		form = EstimasiBiaya_ModelForm(request.POST or None)
@@ -367,7 +367,7 @@ def estimasi_biaya(request):
 		#     kegiatan.estimasi_biaya = formB.cleaned_data['estimasi_biaya']
 		#     kegiatan.save()
 
-			messages.success(request, _('Your Estimasi Biaya has been save successfully.'))
+			messages.success(request, _('Your Schedule has been save successfully.'))
 			return redirect('kegiatan:tabel_estimasi_biaya')
 		else:
 			messages.warning(request, form.errors)
@@ -387,13 +387,13 @@ def estimasi_biaya(request):
 
 def tabel_schedule(request):
 	page_title = _('Tabel Time Schedule')
-	schedule_data =   Estimasi_Biaya.objects.all()
+	schedule_data =   Schedule.objects.all()
 
-	sum_cpi = Estimasi_Biaya.objects.aggregate(Sum('cost_performance_index'))
+	sum_cpi = Schedule.objects.aggregate(Sum('cost_performance_index'))
 	sum_cpi = list(sum_cpi.values())
 	sum_cpi = sum_cpi[0]
 
-	obj_data =   Estimasi_Biaya.objects.all().values_list("cost_performance_index", flat=True).count()
+	obj_data =   Schedule.objects.all().values_list("cost_performance_index", flat=True).count()
 
 	if sum_cpi is None:
 		sum_cpi = 0
@@ -422,7 +422,7 @@ def tambah_schedule(request):
 		form = Schedule_ModelForm(request.POST or None)
 
 		if form.is_valid():
-			# estimasi = Estimasi_Biaya()
+			# estimasi = Schedule()
 			estimasi = form.save(commit=False)
 			estimasi.minggu = form.cleaned_data['minggu']
 			estimasi.progress_rencana = form.cleaned_data['progress_rencana']

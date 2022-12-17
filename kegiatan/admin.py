@@ -80,7 +80,7 @@ class CPMAdmin(admin.ModelAdmin):
         'critical',
     ]
 
-class Estimasi_BiayaAdmin(admin.ModelAdmin):
+class ScheduleAdmin(admin.ModelAdmin):
     list_display = [
         'id',
         'minggu',
@@ -107,5 +107,5 @@ class Estimasi_BiayaAdmin(admin.ModelAdmin):
 admin.site.register(Kegiatan, KegiatanAdmin)
 admin.site.register(CPM, CPMAdmin)
 admin.site.register(PERT, PERTAdmin)
-admin.site.register(Estimasi_Biaya, Estimasi_BiayaAdmin)
+admin.site.register(Schedule, ScheduleAdmin)
 

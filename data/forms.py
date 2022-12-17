@@ -39,5 +39,5 @@ class Kegiatan_Form(forms.Form):
     nama_kegiatan = forms.CharField(required=False, label="Nama Kegiatan:", widget=forms.TextInput(attrs={'class': "form-control"}))
     kode = forms.CharField(required=False, label="Kode Kegiatan:", widget=forms.TextInput(attrs={'class': "form-control"}))
     bobot_kegiatan = forms.CharField(required=False, label="Bobot Kegiatan:", widget=forms.TextInput(attrs={'class': "form-control"}))
-    estimasi_biaya = forms.CharField(required=False, label="Estimasi Biaya:", widget=forms.TextInput(attrs={'class': "form-control"}))
+    estimasi_biaya = forms.CharField(required=False, label="Schedule:", widget=forms.TextInput(attrs={'class': "form-control"}))
     estimasi_waktu = forms.CharField(required=False, label="Tipe Estimasi:", widget=forms.TextInput(attrs={'class': "form-control"}))

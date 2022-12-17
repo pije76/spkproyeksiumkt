@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Estimasi_Biaya',
+            name='Schedule',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('minggu', models.IntegerField(blank=True, null=True, verbose_name='Minggu')),
@@ -49,8 +49,8 @@ class Migration(migrations.Migration):
                 ('cost_performance_index', models.FloatField(blank=True, null=True, verbose_name='Cost Performance Index')),
             ],
             options={
-                'verbose_name': 'Estimasi Biaya',
-                'verbose_name_plural': 'Estimasi Biaya',
+                'verbose_name': 'Schedule',
+                'verbose_name_plural': 'Schedule',
                 'ordering': ('id',),
             },
         ),
