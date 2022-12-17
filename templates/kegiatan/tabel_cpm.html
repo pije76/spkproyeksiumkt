@@ -57,27 +57,21 @@
 					<tbody>
 						{% for item in data_kegiatan %}
 						<tr>
-							<td>{{ item.id }}</td>
+							<td class="text-center">{{ item.id }}</td>
 							<td>{{ item.kegiatan|default_if_none:"" }}</td>
-							<td>{{ item.kode|default_if_none:"" }}</td>
-							<td>{{ item.predecessor|default_if_none:"" }}</td>
-							<td>{{ item.duration|floatformat:2|default_if_none:"" }}</td>
-							<td>{{ item.earliest_start|floatformat:2|default_if_none:"" }}</td>
-							<td>{{ item.earliest_finish|floatformat:2|default_if_none:"" }}</td>
-							<td>{{ item.latest_start|floatformat:2|default_if_none:"" }}</td>
-							<td>{{ item.latest_finish|floatformat:2|default_if_none:"" }}</td>
-							<td>{{ item.critical|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.kode|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.predecessor|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.duration|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.earliest_start|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.earliest_finish|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.latest_start|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.latest_finish|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.critical|default_if_none:"" }}</td>
 						</tr>
 						{% endfor %}
 					</tbody>
 				</table>
 			</form>
-			<div class="btn-group">
-				<a href="{% url 'kegiatan:tambah_cpm' %}"><button type="submit" class="btn btn-primary">Tambah CPM</button></a>
-			</div>
-			<div class="btn-group">
-				<a href="{% url 'kegiatan:export_excel' %}"><button type="submit" class="btn btn-primary">Simpan CPM</button></a>
-			</div>
 			<div class="btn-group">
 				<a href="{% url 'kegiatan:create_cpm' %}"><button type="submit" class="btn btn-primary">Buat CPM</button></a>
 			</div>

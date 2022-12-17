@@ -64,11 +64,11 @@
 					<tbody>
 						{% for item in data_kegiatan %}
 						<tr>
-							<td>{{ item.id }}</td>
+							<td class="text-center">{{ item.id }}</td>
 							<td>{{ item.nama_kegiatan|default_if_none:"" }}</td>
-							<td>{{ item.kode|default_if_none:"" }}</td>
-							<td>{{ item.bobot_kegiatan|default_if_none:"" }}</td>
-							<td>{{ item.biaya_kegiatan|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.kode|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.bobot_kegiatan|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.biaya_kegiatan|default_if_none:"" }}</td>
 						</tr>
 						{% endfor %}
 						<tr>

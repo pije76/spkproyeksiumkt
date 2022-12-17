@@ -83,15 +83,25 @@ class CPMAdmin(admin.ModelAdmin):
 class Estimasi_BiayaAdmin(admin.ModelAdmin):
     list_display = [
         'id',
-        'kegiatan',
-        'bcws',
-        'bcwp',
+        'minggu',
+        'progress_rencana',
+        'progress_aktual',
         'acwp',
+        'bcwp',
+        'bcws',
+        'cost_variance',
+        'cost_performance_index',
     ]
     # list_filter=['available','created','updated']
     list_editable = [
-        # 'kegiatan',
-        # 'estimasi_biaya',
+        'minggu',
+        'progress_rencana',
+        'progress_aktual',
+        'acwp',
+        'bcwp',
+        'bcws',
+        'cost_variance',
+        'cost_performance_index',
     ]
 
 admin.site.register(Kegiatan, KegiatanAdmin)

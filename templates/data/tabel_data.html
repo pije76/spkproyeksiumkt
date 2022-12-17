@@ -26,13 +26,16 @@
 	<div class="row">
 		<div class="col-md-3 col-sm-4">
 			<div class="link-tiles">
-				<a href="{% url 'data:tambah_data' %}" class="add_menu"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data/User</a>
+				<a href="{% url 'data:tambah_data' %}" class="add_menu"><i class="fa fa-plus" aria-hidden="true"></i> Tambah User</a>
 			</div>
 			<div class="link-tiles">
 				<a href="{% url 'kegiatan:tambah_kegiatan' %}" class="add_menu"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Kegiatan</a>
 			</div>
 			<div class="link-tiles">
 				<a href="{% url 'kegiatan:tambah_pert' %}" class="add_menu"><i class="fa fa-plus" aria-hidden="true"></i> Tambah PERT</a>
+			</div>
+			<div class="link-tiles">
+				<a href="{% url 'kegiatan:export_excel' %}" class="add_menu"><i class="fa fa-plus" aria-hidden="true"></i> Persiapan CPM </a>
 			</div>
 			<div class="link-tiles">
 				<a href="{% url 'kegiatan:tambah_cpm' %}" class="add_menu"><i class="fa fa-plus" aria-hidden="true"></i> Tambah CPM</a>
@@ -50,17 +53,15 @@
 						<tr>
 							<th class="text-center">{% trans "ID" %}</th>
 							<th class="text-center">{% trans "User" %}</th>
-							<th class="text-center">{% trans "Posisi" %}</th>
 							<th class="text-center">{% trans "Proyek" %}</th>
 						</tr>
 					</thead>
 					<tbody>
 						{% for item in data_proyek %}
 						<tr>
-							<td>{{ item.id }}</td>
-							<td>{{ item.user }}</td>
-							<td>{{ item.proyek }}</td>
-							<td>{{ item.proyek }}</td>
+							<td class="text-center">{{ item.id }}</td>
+							<td class="text-center">{{ item.user }}</td>
+							<td class="text-center">{{ item.proyek }}</td>
 						</tr>
 						{% endfor %}
 					</tbody>

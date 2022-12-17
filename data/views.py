@@ -39,7 +39,7 @@ def tambah_data(request):
             profile.save()
 
             messages.success(request, _('Your Data has been change successfully.'))
-            return HttpResponseRedirect('/')
+            return redirect('data:tabel_data')
         else:
             messages.warning(request, form.errors)
 

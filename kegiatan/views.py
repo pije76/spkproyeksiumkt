@@ -99,10 +99,18 @@ def hitungVarians(a,b):
 def tabel_pert(request):
 	page_title = _('Daftar PERT')
 	data_user =   UserProfile.objects.all()
-	estimasi_waktu = PERT.objects.filter()
+	pert_data = PERT.objects.all()
 	total_estimasi_waktu = PERT.objects.aggregate(Sum('duration'))
 	total_duration = PERT.objects.aggregate(Sum('duration'))
 	varians_kegiatan = PERT.objects.aggregate(Sum('varians_kegiatan'))
+
+	if varians_kegiatan:standar_varians_kejadian = varians_kegiatan.values()
+	standar_varians_kejadian = list(varians_kegiatan.values())
+	standar_varians_kejadian = standar_varians_kejadian[0]
+	if standar_varians_kejadian is None:
+		standar_deviasi_kejadian = 0
+	else:
+		standar_deviasi_kejadian = math.sqrt(standar_varians_kejadian)
 
 	optimistic_time = PERT.objects.all().values_list("optimistic_time")
 	most_likely_time = PERT.objects.all().values_list("most_likely_time")
@@ -114,13 +122,14 @@ def tabel_pert(request):
 
 	context = {
 		'page_title': page_title,
-		'estimasi_waktu': estimasi_waktu,
+		'pert_data': pert_data,
 		'total_estimasi_waktu': total_estimasi_waktu,
 		'optimistic_time': optimistic_time,
 		'most_likely_time': most_likely_time,
 		'pessimistic_time': pessimistic_time,
 		'total_duration': total_duration,
 		'varians_kegiatan': varians_kegiatan,
+		'standar_deviasi_kejadian': standar_deviasi_kejadian,
 	}
 
 	return render(request,'kegiatan/tabel_pert.html', context)
@@ -231,9 +240,7 @@ def tambah_cpm(request):
 			# obj, update = PERT.objects.update_or_create(kegiatan=estimasi.kegiatan, optimistic_time=estimasi.optimistic_time, most_likely_time=estimasi.most_likely_time, pessimistic_time=estimasi.pessimistic_time)
 
 			# get_select = request.POST.get('get_select')
-			# print("get_select POST", get_select)
 			# get_select = estimasi.kegiatan.id
-			# print("get_select", get_select)
 			# set_kegiatan = Kegiatan.objects.get(id=get_select)
 			# set_kegiatan.duration = hitung_Durasi
 			# set_kegiatan.standar_deviasi = hitung_Deviasi
@@ -258,22 +265,12 @@ def tambah_cpm(request):
 
 
 ################################## CPM ####################################
-def readData():
-	PATH = "/var/www/html/spkproyeksiumkt/upload/"
-	os.chdir(PATH)
-
-	df = pd.read_csv('data.xlsx')
-	sheet = pd.read_excel(df, sheet_name='Sheet1')
-	return(sheet)
-
-
 def export_excel(request):
 	response = HttpResponse(content_type='application/ms-excel')
 	response['Content-Disposition'] = 'attachment; filename="data.xlsx"'
 
 	wb = xlwt.Workbook(encoding='utf-8')
 	ws = wb.add_sheet('Sheet1')
-
 
 	# Sheet header, first row
 	row_num = 0
@@ -305,158 +302,6 @@ def export_excel(request):
 def create_cpm(request):
 	main()
 	messages.success(request, _('Your CPM has been created successfully.'))
-	return redirect('kegiatan:tabel_cpm')
-
-
-def create_forwardsCPM(request):
-	page_title = _('Create CPM')
-	row_kegiatan = Kegiatan.objects.all()
-	row_kegiatan_list = list(row_kegiatan)
-
-	for item in row_kegiatan_list:
-		if type(item.predecessor) is str:
-			item.predecessor = item.predecessor.upper()
-			ef = []
-
-			for j in item.predecessor:
-				for t in row_kegiatan_list:
-					if t.kode == j:
-						ef.append(t.earliest_finish)
-				item.earliest_start = max(ef, default=0)
-				item.save(update_fields=['earliest_start'])
-
-				item.earliest_finish = item.earliest_start + item.duration
-				item.save(update_fields=['earliest_finish'])
-
-			del ef
-		else:
-			item.earliest_start = 0
-			item.save(update_fields=['earliest_start'])
-
-			item.earliest_finish = item.earliest_start + item.duration
-			item.save(update_fields=['earliest_finish'])
-
-	context = {
-		'page_title': page_title,
-		'row_kegiatan': row_kegiatan,
-	}
-
-	# return render(request,'kegiatan/tabel_cpm.html', context)
-	return redirect('kegiatan:tabel_cpm')
-
-
-def create_backwardsCPM(request):
-	# RULE1: LATEST FINISH OF THE ACTIVITY WHICH IS NOT A PREDECESSOR OF ANY ACTIVITY IS THE MAXIMUM EARLIEST FINISH
-	# RULE2: LATEST FINISH OF THE ACTIVITY WHICH IS A PREDECESSOR OF ANY ACTIVITY IS THE MINIMUM EARLIEST FINISH OF ITS SUCESSORS
-	# RULE3: THE LATEST START OF THE ACITVITY OF THE ACTIVITY IS LATEST FINISH LESS THE ACTIVITY TIME
-	page_title = _('Create CPM')
-	row_kegiatan = Kegiatan.objects.all()
-	row_kegiatan_list = list(row_kegiatan)
-	queryset = reversed(Kegiatan.objects.all())
-	row_kegiatan_list_reversed = list(queryset)
-
-	pred = []
-	eF = []
-	successors = []
-	latest_start = 0
-	latest_finish = 0
-
-	# THIS FOR LOOP WILL GATHER EARLIEST FINISH OF ALL TASKS AND FILL THE PREDECESSORS LIST OF ALL THE TASKS
-	for item in row_kegiatan_list:
-		if type(item.predecessor) is str:
-			for j in item.predecessor:
-				pattern = re.compile(r'[A-Z]')
-				match = pattern.finditer(j)
-
-				for r in match:
-					pred.append(j) # FILL IN PREDECCSOR LIST OF ALL TASKS
-				# FILL IN SUCCESSORS
-				for m in row_kegiatan_list:
-					if m.kode == j:
-						successors.append(item.kode)
-		eF.append(item.earliest_finish)
-
-	for item in row_kegiatan_list_reversed:
-
-		if item.kode not in pred:
-			item.latest_finish = max(eF, default=0)
-
-			item.save(update_fields=['latest_finish'])
-			eF.remove(max(eF))
-			item.latest_start = item.latest_finish - item.duration
-			item.save(update_fields=['latest_start'])
-			item.slack_time = item.latest_finish - item.earliest_finish
-			item.save(update_fields=['slack_time'])
-			if item.slack_time > 0:
-				item.critical = '-'
-				item.save(update_fields=['critical'])
-			else:
-				item.critical = 'Kritis'
-				item.save(update_fields=['critical'])
-		else:
-			# for k in eF:
-			# 	item.latest_finish = k
-			# 	item.save(update_fields=['latest_start'])
-
-			minLs = []
-			successors = list(reversed(successors))
-			# row_kegiatan = reversed(Kegiatan.objects.filter().exclude(latest_finish__in=max(eF)))
-			# row_kegiatan = reversed(Kegiatan.objects.filter(~Q(latest_finish__in=eF)))
-			# row_kegiatan = reversed(Kegiatan.objects.filter().values_list("latest_finish", flat=True))
-			# row_kegiatan = Kegiatan.objects.exclude(latest_finish__isnull=False).values_list("kode", flat=True)
-			row_kegiatan = Kegiatan.objects.exclude(latest_finish__isnull=False)
-			row_kegiatan = list(reversed(row_kegiatan))
-			# row_kegiatan_list = list(row_kegiatan)
-
-
-
-			# for item in row_kegiatan_list:
-			for t in eF:
-				# for t in eF:
-					# item.latest_finish = t
-					# item.save()
-					# item.save(update_fields=['latest_finish'])
-				row_kegiatan = Kegiatan.objects.exclude(latest_finish__isnull=False)
-				for item.latest_finish in row_kegiatan:
-				# for item in varians_kejadian:
-
-				# 	# Kegiatan.objects.exclude(latest_finish__isnull=False).update(latest_finish = t)
-					item.latest_finish = t
-					item.latest_start = item.latest_finish - item.duration
-					# item.save()
-					# item.update(latest_finish=t) # GAGAL
-					item.save(update_fields=['latest_finish'])
-					item.save(update_fields=['latest_start'])
-					item.slack_time = item.latest_finish - item.earliest_finish
-					item.save(update_fields=['slack_time'])
-					if item.slack_time > 0:
-						item.critical = '-'
-						item.save(update_fields=['critical'])
-					else:
-						item.critical = 'Kritis'
-						item.save(update_fields=['critical'])
-				# 	# item.save(latest_finish = t)
-				# 	item.latest_start = item.latest_finish - item.duration
-				# 	item.save(update_fields=['latest_start'])
-
-			# for x in successors:
-			# 	for t in (row_kegiatan_list):
-					# if t.kode == x:
-					# 	# t.latest_start = 0
-					# 	minLs.append(t.latest_start)
-			# item.latest_finish = min(minLs)
-			# item.save(update_fields=['latest_finish'])
-			# del minLs
-
-			# item.latest_start = item.latest_finish - item.duration
-			# item.save(update_fields=['latest_start'])
-
-	context = {
-		'page_title': page_title,
-		'row_kegiatan': row_kegiatan,
-	}
-
-	# return render(request,'kegiatan/tabel_cpm.html', context)
 	return redirect('kegiatan:tabel_cpm')
 
 
@@ -540,14 +385,26 @@ def estimasi_biaya(request):
 	return render(request,'kegiatan/estimasi_biaya.html', context)
 
 
-
 def tabel_schedule(request):
 	page_title = _('Tabel Time Schedule')
 	schedule_data =   Estimasi_Biaya.objects.all()
 
+	sum_cpi = Estimasi_Biaya.objects.aggregate(Sum('cost_performance_index'))
+	sum_cpi = list(sum_cpi.values())
+	sum_cpi = sum_cpi[0]
+
+	obj_data =   Estimasi_Biaya.objects.all().values_list("cost_performance_index", flat=True).count()
+
+	if sum_cpi is None:
+		sum_cpi = 0
+	else:
+		sum_cpi = sum_cpi
+		sum_cpi = sum_cpi/obj_data
+
 	context = {
 		'page_title': page_title,
 		'schedule_data': schedule_data,
+		'sum_cpi': sum_cpi,
 	}
 
 	return render(request,'kegiatan/tabel_schedule.html', context)
@@ -557,20 +414,32 @@ def tabel_schedule(request):
 def tambah_schedule(request):
 	page_title = _('Tambah Schedule')
 
+	data_rab = Proyek.objects.all().values_list("rab", flat=True)
+	data_rab = data_rab[0]
+	data_rab = float(data_rab)
 
 	if request.method == 'POST':
 		form = Schedule_ModelForm(request.POST or None)
 
 		if form.is_valid():
-			# estimasi = Schedule_ModelForm()
+			# estimasi = Estimasi_Biaya()
 			estimasi = form.save(commit=False)
-			estimasi.kegiatan = form.cleaned_data['kegiatan']
 			estimasi.minggu = form.cleaned_data['minggu']
 			estimasi.progress_rencana = form.cleaned_data['progress_rencana']
 			estimasi.progress_aktual = form.cleaned_data['progress_aktual']
+			hitung_bcws = (estimasi.progress_rencana/99.0)*data_rab
+			estimasi.bcws = hitung_bcws
+			hitung_bcwp = (estimasi.progress_aktual/100.0)*data_rab
+			estimasi.bcwp = hitung_bcwp
+			estimasi.acwp = form.cleaned_data['acwp']
+			hitung_acwp = estimasi.acwp
+			hitung_cv = hitung_bcwp - hitung_acwp
+			estimasi.cost_variance = hitung_cv
+			hitung_cpi = hitung_bcwp / hitung_acwp
+			estimasi.cost_performance_index = hitung_cpi
 			estimasi.save()
 
-			messages.success(request, _('Your Schedulehas been save successfully.'))
+			messages.success(request, _('Your Schedule has been save successfully.'))
 			return redirect('kegiatan:tabel_schedule')
 		else:
 			messages.warning(request, form.errors)
@@ -581,7 +450,6 @@ def tambah_schedule(request):
 	context = {
 		'page_title': page_title,
 		'form': form,
-		# 'data_biaya': data_biaya,
 	}
 
 	return render(request,'kegiatan/tambah_schedule.html', context)

@@ -43,22 +43,38 @@
 				<table id="t_add_row" class="table table-striped table-bordered">
 					<thead class="thead_light">
 						<tr>
-							<th class="text-center">{% trans "ID" %}</th>
-							<th class="text-center">{% trans "Nama Kegiatan" %}</th>
-							<th class="text-center">{% trans "Minggu" %}</th>
+							<th class="text-center">{% trans "Minggu Ke" %}</th>
 							<th class="text-center">{% trans "Progress Rencana" %}</th>
-							<th class="text-center">{% trans "Progress Aktual" %}</th>
+							<th class="text-center">{% trans "Progress Actual" %}</th>
+							<th class="text-center">{% trans "ACWP" %}</th>
+							<th class="text-center">{% trans "BCWP" %}</th>
+							<th class="text-center">{% trans "BCWS" %}</th>
+							<th class="text-center">{% trans "CV" %}</th>
+							<th class="text-center">{% trans "CPI" %}</th>
 					</thead>
 					<tbody>
 						{% for item in schedule_data %}
 						<tr>
-							<td>{{ item.id }}</td>
-							<td>{{ item.kegiatan|default_if_none:"" }}</td>
-							<td>{{ item.minggu|default_if_none:"" }}</td>
-							<td>{{ item.progress_rencana|floatformat:2|default_if_none:"" }}</td>
-							<td>{{ item.progress_aktual|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.minggu|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.progress_rencana|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.progress_aktual|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.acwp|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.bcwp|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.bcws|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.cost_variance|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.cost_performance_index|floatformat:5|default_if_none:"" }}</td>
 						</tr>
 						{% endfor %}
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>Total: {{ sum_cpi|floatformat:5|default_if_none:"" }}</td>
+						</tr>
 					</tbody>
 				</table>
 			</form>

@@ -55,17 +55,17 @@
 						</tr>
 					</thead>
 					<tbody>
-						{% for item in estimasi_waktu %}
+						{% for item in pert_data %}
 						<tr>
-							<td>{{ item.id }}</td>
+							<td class="text-center">{{ item.id }}</td>
 							<td>{{ item.kegiatan }}</td>
-							<td>{{ item.optimistic_time|floatformat:0 }}</td>
-							<td>{{ item.most_likely_time|floatformat:0 }}</td>
-							<td>{{ item.pessimistic_time|floatformat:0 }}</td>
-							<td>{{ item.duration|floatformat:2 }}</td>
-							<td>{{ item.duration|floatformat:0 }}</td>
-							<td>{{ item.standar_deviasi|floatformat:2|default_if_none:"" }}</td>
-							<td>{{ item.varians_kegiatan|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.optimistic_time|floatformat:0 }}</td>
+							<td class="text-center">{{ item.most_likely_time|floatformat:0 }}</td>
+							<td class="text-center">{{ item.pessimistic_time|floatformat:0 }}</td>
+							<td class="text-center">{{ item.duration|floatformat:2 }}</td>
+							<td class="text-center">{{ item.duration|floatformat:0 }}</td>
+							<td class="text-center">{{ item.standar_deviasi|floatformat:2|default_if_none:"" }}</td>
+							<td class="text-center">{{ item.varians_kegiatan|floatformat:2|default_if_none:"" }}</td>
 						</tr>
 						{% endfor %}
 						<tr>

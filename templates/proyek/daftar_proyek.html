@@ -46,10 +46,10 @@
 					<tbody>
 						{% for item in data_proyek %}
 						<tr>
-							<td>{{ item.id }}</td>
+							<td class="text-center">{{ item.id }}</td>
 							<td>{{ item.nama_proyek }}</td>
-							<td>{{ item.spk }}</td>
-							<td>{{ item.rab|floatformat:0 }}</td>
+							<td class="text-center">{{ item.spk }}</td>
+							<td class="text-center">{{ item.rab|floatformat:0 }}</td>
 						</tr>
 						{% endfor %}
 					</tbody>
