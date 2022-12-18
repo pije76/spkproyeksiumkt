@@ -24,7 +24,7 @@ import itertools
 ################################# KEGIATAN ########################################
 @login_required()
 def tabel_kegiatan(request):
-	page_title = _('Daftar Kegiatan')
+	page_title = _('Kegiatan')
 	data_user =   UserProfile.objects.all()
 	data_kegiatan = Kegiatan.objects.filter()
 	total_bobot = Kegiatan.objects.aggregate(Sum('bobot_kegiatan'))
@@ -97,7 +97,7 @@ def hitungVarians(a,b):
 
 
 def tabel_pert(request):
-	page_title = _('Daftar PERT')
+	page_title = _('Tabel PERT')
 	data_user =   UserProfile.objects.all()
 	pert_data = PERT.objects.all()
 	total_estimasi_waktu = PERT.objects.aggregate(Sum('duration'))
@@ -307,7 +307,7 @@ def create_cpm(request):
 
 ################################ SCHEDULE & BIAYA ##########################################
 def tabel_estimasi_biaya(request):
-	page_title = _('Daftar Schedule')
+	page_title = _('Tabel Schedule')
 	data_user =   UserProfile.objects.all()
 	estimasi_biaya = Schedule.objects.filter()
 	# total_estimasi_waktu = PERT.objects.aggregate(Sum('duration'))
@@ -386,7 +386,7 @@ def estimasi_biaya(request):
 
 
 def tabel_schedule(request):
-	page_title = _('Tabel Time Schedule')
+	page_title = _('Tabel Schedule')
 	schedule_data =   Schedule.objects.all()
 
 	sum_cpi = Schedule.objects.aggregate(Sum('cost_performance_index'))
